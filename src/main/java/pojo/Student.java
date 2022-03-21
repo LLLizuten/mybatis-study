@@ -1,0 +1,55 @@
+package pojo;
+
+/**
+ * @author lzy
+ * @create 2022-03-21 10:41
+ * 学生实体类
+ */
+public class Student {
+    private Integer id;
+    private String name;
+    private String email;
+    private Integer aeg;
+
+    public Student() {
+    }
+
+    public Student(Integer id, String name, String email, Integer aeg) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.aeg = aeg;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getAeg() {
+        return aeg;
+    }
+
+    public void setAeg(Integer aeg) {
+        this.aeg = aeg;
+    }
+}
