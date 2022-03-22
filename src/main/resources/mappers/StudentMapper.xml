@@ -17,6 +17,44 @@
     <update id="update">
         update student set name = '李明' where id = 9
     </update>
+    <!-- void delete -->
+    <delete id="delete">
+        delete from student where id = 7
+    </delete>
 
+    <!-- pojo.Student query  resultType:返回的结果类型-->
+    <select id="query" resultType="pojo.Student">
+        select * from student where id = 2
+    </select>
+
+    <!-- Student queryById -->
+    <select id="queryById" resultType="pojo.Student">
+        select * from student where id = #{id}
+    </select>
+
+    <!-- void insertStudent2(Student student) -->
+    <insert id="insertStudent2">
+        insert into student values(#{id}, #{name}, #{email}, #{age})
+    </insert>
+
+    <!-- Student queryByIdAndName(@Param("id") int id, @Param("name") String name) -->
+    <select id="queryByIdAndName" resultType="pojo.Student">
+        select * from student where id = #{id} and name=#{name}
+    </select>
+
+    <!-- List<Student> queryByLike(String name) -->
+    <select id="queryByLike" resultType="pojo.Student">
+        select * from student where name like "%"#{name}"%"
+    </select>
+
+    <!-- void deleteMore(String ids) -->
+    <delete id="deleteMore">
+        delete from student where id in (${ids})
+    </delete>
+
+    <!-- List<Student> getAllStudents(@Param("tableName") String tableName) -->
+    <select id="getAllStudents" resultType="pojo.Student">
+        select * from ${tableName}
+    </select>
 
 </mapper>

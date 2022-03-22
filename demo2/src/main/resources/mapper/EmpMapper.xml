@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--   
+namespace:命名空间,使用Mapper接口的全限定名称
+-->
+<mapper namespace="mapper.EmpMapper">
+    <!-- id值为对应mapper接口的方法名,resultType为返回对象类型 -->
+    <!-- List<Emp> queryAll() -->
+    <select id="queryAll" resultType="pojo.Emp" >
+        select * from t_emp
+    </select>
+
+    <!-- 定义一个用于分步查询的resultMap-->
+    <resultMap id="empDeptStepMap" type="pojo.Emp">
+        <id column="eid" property="eid"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="sex" property="sex"></result>
+        <result column="email" property="email"></result>
+        <result column="did" property="did"></result>
+        <!-- 这里做了第二次查询,通过该员工的did查询对应部门的信息 -->
+        <association property="dept" select="mapper.DeptMapper.getEmpDeptByStep" column="did"></association>
+    </resultMap>
+
+    <!-- 分步查询第一步,根据员工eid查询该员工信息 -->
+    <!-- Emp getEmpByStep(@Param("eid") int eid) -->
+    <select id="getEmpByStep" resultMap="empDeptStepMap">
+        select * from t_emp where eid = #{eid}
+    </select>
+
+
+    <!-- 分步查询部门中所有员工信息 -->
+    <!-- Dept getDept(@Param("did") int did) -->
+    <select id="getDeptByDid" resultMap="deptAndEmp">
+        select * from t_dept where did = #{did}
+    </select>
+
+    <resultMap id="deptAndEmp" type="pojo.Dept">
+        <id column="did" property="did"></id>
+        <result column="dept_name" property="deptName"></result>
+        <collection property="emps" select="mapper.DeptMapper.getEmpListByDid" column="did"></collection>
+    </resultMap>
+</mapper>

@@ -9,7 +9,7 @@ public class Student {
     private Integer id;
     private String name;
     private String email;
-    private Integer aeg;
+    private Integer age;
 
     public Student() {
     }
@@ -18,7 +18,7 @@ public class Student {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.aeg = aeg;
+        this.age = aeg;
     }
 
     public Integer getId() {
@@ -45,11 +45,11 @@ public class Student {
         this.email = email;
     }
 
-    public Integer getAeg() {
-        return aeg;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setAeg(Integer aeg) {
-        this.aeg = aeg;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

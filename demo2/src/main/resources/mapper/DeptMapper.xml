@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--   
+namespace:命名空间,使用Mapper接口的全限定名称
+-->
+<mapper namespace="mapper.DeptMapper">
+    <!-- 分步查询第二步:根据该员工did查询对应部门信息 -->
+    <!-- Dept getEmpDeptByStep(@Param("did") int did) -->
+    <select id="getEmpDeptByStep" resultType="pojo.Dept">
+        select * from t_dept where did = #{did}
+    </select>
+
+    <!-- Dept getEmpListByDid(@Param("did") int did) -->
+    <select id="getEmpListByDid" resultType="pojo.Emp">
+        select * from t_emp where did = #{did}
+    </select>
+</mapper>
