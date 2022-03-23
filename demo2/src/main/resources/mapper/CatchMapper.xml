@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--   
+namespace:命名空间,使用Mapper接口的全限定名称
+-->
+<mapper namespace="mapper.CatchMapper">
+    <!-- id值为对应mapper接口的方法名,resultType为返回对象类型 -->
+    <!--
+    <select id="" resultType="">
+        
+    </select>
+    -->
+
+    <!-- Emp queryEmpById(@Param("eid") int eid); -->
+    <select id="queryEmpById" resultType="pojo.Emp">
+        select * from t_emp where eid = #{eid}
+    </select>
+</mapper>
